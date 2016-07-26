@@ -22,6 +22,27 @@ var UserSchema=mongoose.Schema({
   },
   lname:{
     type:String
+  },
+  position:{
+    type:String
+  },
+  bio:{
+    type:String
+  },
+  title:{
+    type:String
+  },
+  link:{
+    type:String
+  },
+  github:{
+    type:String
+  },
+  gitlab:{
+    type:String
+  },
+  linkedin:{
+    type:String
   }
 });
 

@@ -4,14 +4,15 @@
 <div class="header clearfix">
   <h2 class="text-muted"><strong>Swahilibox Consultancy</strong></h2>
 </div>
+   <% for(i=0; i<errors.length; i++){ %>
+     <div class="alert alert-danger">
+        <%= errors[i].msg %>
+     </div>
+    <% } %>
+    <div class="alert alert-danger"><%= utaken %></div>
 <h2 class="page-header">Register</h2>
 <div class="row">
   <div class="col-lg-12 ">
-    <% for(i = 0; i < errors.length; i++){ %>
-    <%= errors[i] %>
-    <%}%>
-
-
 <form method="post" action="/users/register">
   <div class="form-group">
     <label>First Name</label>

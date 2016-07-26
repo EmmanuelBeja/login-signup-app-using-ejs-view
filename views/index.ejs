@@ -1,18 +1,72 @@
+
 <link rel="stylesheet" href="/css/bootstrap.css"/> <!-- load bootstrap css -->
 <link rel="stylesheet" href="/css/style.css"/>
 <div class="container">
 <div class="header clearfix">
   <nav>
     <ul class="nav nav-pills pull-right">
+      <li role="presentation"><a href="/*">Edit Profile</a></li>
       <li role="presentation"><a href="/users/logout">Logout</a></li>
     </ul>
   </nav>
   <h2 class="text-muted"><strong>Swahilibox Consultancy</strong></h2>
 </div>
- <h2 class="page-header">Dashboard</h2>
- <div class="row">
-   <div class="col-lg-12 ">
- <p>Welcome to your dashboard</p>
- </div>
- </div>
+<!-- this is the markup. you can change the details (your own name, your own avatar etc.) but don’t change the basic structure! -->
+
+<aside class="profile-card">
+
+ <header>
+
+    <!-- here’s the avatar -->
+  <img src="https://0.gravatar.com/avatar/bb9bf20fb6f55b4af10b0f98c540075f?s=150">
+
+  <!-- the user name -->
+  <h1>Hello <%= user.username %>!</h1>
+
+    <!-- and role or location -->
+    <%= user.position%>
+    <h2>Web & Mobile Developer</h2>
+  </header>
+
+  <!-- bit of a bio; who are you? -->
+  <div class="profile-bio">
+    <%=user.bio%>
+    <p>A passionate developer & blogger who devotes most of his time punching his keyboard and swiping his smartphone.</p>
+  </div>
+
+  <!-- your skills -->
+  <div class="profile-bio">
+    Skills
+    <ul>
+      <li>HTML5</li>
+      <li>PHP</li>
+      <li>PYTHON</li>
+    </ul>
+  </div>
+
+<!-- Projects worked on -->
+  <div class="profile-bio">
+    Projects:
+    <h4><%= user.title %> </h4>
+    <h5> <a href="#"><%= user.link %></a></h5>
+  </div>
+
+  <div class="profile-bio">
+    Links:
+    <h4><a href="#"><%= user.gitHub%></a></h4>
+    <h4><a href="#"><%= user.gitLab%></a></h4>
+    <h4><a href="#"><% user.linkedin%></a></h4>
+  </div>
+
+  <!-- some social links to show off -->
+  <ul class="profile-social-links">
+    <li>
+      Email : <%=user.email%>
+    </li>
+    <li>
+      Phone Number : 0<%=user.phonenumber%>
+    </li>
+  </ul>
+
+</aside>
 </div>

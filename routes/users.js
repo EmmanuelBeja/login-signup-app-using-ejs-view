@@ -1,21 +1,31 @@
 var express= require('express');
-var router=express.Router();
+var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 var User = require('../models/user');
 
-//get Register
-router.get('/register',function(req,res){
-  res.render('register');
-});
+
 //login
 router.get('/login',function(req,res){
   res.render('login');
 });
 
+//profile page
+router.get('/profile', function(req, res) {
+    res.render('profile');
+});
+
+
+//get Register
+router.get('/register',function(req,res){
+  var errors="";
+  var utaken = "";
+  res.render('register', {errors:errors, utaken : utaken });
+});
+
 //Register user
-router.post('/register',function(req,res){
+router.post('/register', function(req, res){
   var fname=req.body.fname;
   var lname=req.body.lname;
   var email=req.body.email;
@@ -34,36 +44,55 @@ router.post('/register',function(req,res){
   req.checkBody('phonenumber','Phone Number is not valid').isNumeric();
   req.checkBody('password','Password is required').notEmpty();
   req.checkBody('password', 'Password should be 8 to 20 characters').len(8, 20);
-  req.checkBody('password2','PasswordS do not match').equals(req.body.password);
+  req.checkBody('password2','Passwords do not match').equals(req.body.password);
 
   var errors = req.validationErrors();
+      if (errors){
+        var msg = errors.msg;
+        res.render('register', {
+          errors : errors,
+          msg:msg
+      });
+      console.log(errors);
+      }
+      else {
+        User.getUserByUsername(username, function(err, user){
+          if(err) throw err;
+          if(user){
+            var utaken = "Username taken";
+            var errors = "";
+            var msg = ""
+            res.render('register', {
+              errors : errors,
+              msg:msg,
+              utaken : utaken
+          });
+        }else {
+        console.log('You have no register errors');
+        User.find
+        var newUser=new User({
+          fname: fname,
+          lname: lname,
+          username: username,
+          email: email,
+          phonenumber: phonenumber,
+        });
+        User.createUser(newUser,function(err, user){
+          if (err) throw err;
+          console.log(user);
+        });
+        req.flash('success_msg', 'you are registered and now can login');
+        res.redirect('/users/login');
+        }
+        });
+      }
+    });
 
-if (errors.length > 0){
-  console.log('You have errors');
-res.render('register',{
-  errors: errors
-});
-}
-else {
-  console.log('You have no register errors');
-  var newUser=new User({
-    fname: fname,
-    lname: lname,
-    username: username,
-    email: email,
-    phonenumber: phonenumber,
-    password:password
-  });
-  User.createUser(newUser,function(err, user){
-    if (err) throw err;
-    console.log(user);
-  });
-  req.flash('success_msg', 'you are registered and now can login');
-res.redirect('/users/login');
-}
-});
 
-passport.use(new LocalStrategy(
+
+
+//pasport local
+passport.use( new LocalStrategy(
   function(username, password, done) {
   User.getUserByUsername(username, function(err, user){
     if(err) throw err;
