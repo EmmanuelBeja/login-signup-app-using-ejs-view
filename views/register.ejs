@@ -4,10 +4,11 @@
 <div class="header clearfix">
   <h2 class="text-muted"><strong>Swahilibox Consultancy</strong></h2>
 </div>
-
-   <div class="alert alert-danger">Please follow instructions:<ol><li>Dont leave a field empty.</li><li>Phone number should be a number.</li><li>Email should be valid.</li><li>Password between 8 and 20 characters.</li><li>On confirming the passwords, they should match.</li></ol></div>
-
-
+   <% for(i=0; i<errors.length; i++){ %>
+     <div class="alert alert-danger">
+        <%= errors[i].msg %>
+     </div>
+    <% } %>
 <h2 class="page-header">Register</h2>
 <div class="row">
   <div class="col-lg-12 ">

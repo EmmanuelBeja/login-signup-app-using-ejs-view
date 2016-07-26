@@ -11,21 +11,14 @@ router.get('/login',function(req,res){
   res.render('login');
 });
 
+//profile page
+router.get('/profile', function(req, res) {
+    res.render('profile');
+});
 //get Register
 router.get('/register',function(req,res){
-  req.checkBody('fname','First Name is required').notEmpty();
-  req.checkBody('lname','Last Name is required').notEmpty();
-  req.checkBody('username','Username is required').notEmpty();
-  req.checkBody('email','Email is required').notEmpty();
-  req.checkBody('email','Email is not valid').isEmail();
-  req.checkBody('phonenumber','Phone number is required').notEmpty();
-  req.checkBody('phonenumber','Phone Number is not valid').isNumeric();
-  req.checkBody('password','Password is required').notEmpty();
-  req.checkBody('password', 'Password should be 8 to 20 characters').len(8, 20);
-  req.checkBody('password2','Passwords do not match').equals(req.body.password);
-
-  var errors = req.validationErrors();
-  res.render('register');
+  var errors="";
+  res.render('register', {errors:errors});
 });
 
 //Register user
@@ -53,9 +46,10 @@ router.post('/register', function(req, res){
   var errors = req.validationErrors();
 
 if (errors){
-
+  var msg = errors.msg;
   res.render('register', {
     errors : errors,
+    msg:msg
 });
 console.log(errors);
 }
