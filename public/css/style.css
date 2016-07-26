@@ -115,7 +115,11 @@ body {
   background-size:auto, 100% 100%;
   background-attachment: fixed;
   color: black;
+<<<<<<< HEAD
   
+=======
+  font-family: "Lato", "Helvetica Neue",Helvetica,Arial,sans-serif;
+>>>>>>> 12e47420e3033906e3ac2475086f8718fe040270
   font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
