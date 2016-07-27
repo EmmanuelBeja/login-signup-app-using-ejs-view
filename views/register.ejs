@@ -9,7 +9,10 @@
         <%= errors[i].msg %>
      </div>
     <% } %>
-    <div class="alert alert-danger"><%= utaken %></div>
+    <% if (utaken.length > 0) { %>
+      <div class="alert alert-danger"><%= utaken %></div>
+    <% } %>
+    
 
 <h2 class="page-header">Register</h2>
 <div class="row">

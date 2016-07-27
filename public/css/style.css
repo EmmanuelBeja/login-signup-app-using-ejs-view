@@ -110,13 +110,13 @@ $spacing-unit: 24px;
 }
 
 body {
-  background-color: white;
+  background-color:  white;
   background-repeat:repeat, no-repeat;
   background-size:auto, 100% 100%;
   background-attachment: fixed;
   color: black;
 <<<<<<< HEAD
-  
+
 =======
   font-family: "Lato", "Helvetica Neue",Helvetica,Arial,sans-serif;
 >>>>>>> 12e47420e3033906e3ac2475086f8718fe040270
